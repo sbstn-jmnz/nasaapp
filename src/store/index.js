@@ -13,9 +13,10 @@ export default new Vuex.Store({
     GET_APOD(state, apod) { state.apod = apod }
   },
   actions: {
-    getApod({ commit }) {
+    getApod({ commit }, date = null) {
+      let queryDate = date ? date : new Date().toISOString().substr(0, 10)
       axios
-        .get(APOD_ENDPOINT)
+        .get(`${APOD_ENDPOINT}&date=${queryDate}`)
         .then((response) => {
           commit('GET_APOD', response.data)
         })
