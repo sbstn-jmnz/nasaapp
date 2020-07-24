@@ -1,40 +1,45 @@
 <template>
-  <v-app-bar app color="primary" dark>
-    <div class="d-flex align-center">
-      <v-img
-        alt="Vuetify Logo"
-        class="shrink mr-2"
-        contain
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-        transition="scale-transition"
-        width="40"
-      />
-
-      <v-img
-        alt="Vuetify Name"
-        class="shrink mt-1 hidden-sm-and-down"
-        contain
-        min-width="100"
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-        width="100"
-      />
-    </div>
-
+  <v-toolbar>
+    <v-toolbar-title>Toolbar Mobile Menu</v-toolbar-title>
     <v-spacer></v-spacer>
+    <v-toolbar-items class="hidden-sm-and-down">
+      <v-btn v-for="item in menu" :key="item.icon" :to="item.link" text>{{
+        item.title
+      }}</v-btn>
+    </v-toolbar-items>
 
-    <v-btn
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
-      text
-    >
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
-    </v-btn>
-  </v-app-bar>
+    <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-menu class="hidden-md-and-up">
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      <v-list>
+        <v-list-tile v-for="item in menu" :key="item.icon">
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
+  </v-toolbar>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      menu: [
+        { icon: "home", title: "Link A" },
+        { icon: "info", title: "Link B" },
+        { icon: "warning", title: "Link C" }
+      ]
+    };
+  },
+
+  methods: {
+    menuItems() {
+      return this.menu;
+    }
+  }
+};
 </script>
 
 <style>

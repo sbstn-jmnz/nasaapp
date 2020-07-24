@@ -3,7 +3,7 @@
     <app-bar></app-bar>
     <v-main>
       <v-row>
-        <v-col cols="6" class="mx-auto">
+        <v-col cols="12" class="mx-auto" sm="12">
           <v-date-picker
             v-model="date"
             v-bind:max="today"
@@ -12,7 +12,7 @@
             @click:date="getInfo"
           ></v-date-picker>
         </v-col>
-        <v-col cols="6" class="mx-auto">
+        <v-col cols="12" class="mx-auto" sm="12">
           <v-card class="mx-auto" max-width="400">
             <v-img
               v-if="apod.media_type == 'image'"
